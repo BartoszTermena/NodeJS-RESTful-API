@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRouters = require('./api/routes/user')
 
 mongoose.connect('mongodb://admin:' + process.env.MONGO_ATLAS_PW + '@cluster0-shard-00-00-d3blz.mongodb.net:27017,cluster0-shard-00-01-d3blz.mongodb.net:27017,cluster0-shard-00-02-d3blz.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',
 {
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 // routes which should handle requests
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
+app.use('/user', userRouters);
 
 app.use((req, res, next) => {
     const error = new Error('Not foud');
